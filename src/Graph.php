@@ -78,7 +78,7 @@ class Graph
   {
     if (!$this->existsEdge($firstNode, $secondNode) && !$this->areBothNodesIdentical($firstNode, $secondNode)) {
       $this->graph[$firstNode][] = new Edge($secondNode,$weight);
-      if (!$isDirected){
+      if (!$this->isDirected){
         $this->graph[$secondNode][] = new Edge($firstNode,$weight);
       }
     }
