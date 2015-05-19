@@ -25,7 +25,7 @@ class GraphTest extends PHPUnit_Framework_TestCase
       $undirectedGraph = new Graph(self::UNDIRECTED_GRAPH, self::NON_WEIGHTED_GRAPH);
       $numberOfNodes = 10;
       $nodeSet = array();
-      for ($i; $i < $numberOfNodes; $i++) {
+      for ($i = 0; $i < $numberOfNodes; $i++) {
         $nodeSet[] = self::NODE+$i;
       }
       $undirectedGraph->addNodeSet($nodeSet);
@@ -40,7 +40,7 @@ class GraphTest extends PHPUnit_Framework_TestCase
       $undirectedGraph = new Graph(self::UNDIRECTED_GRAPH, self::NON_WEIGHTED_GRAPH);
       $numberOfNodes = 2;
       $nodeSet = array();
-      for ($i; $i < $numberOfNodes; $i++) {
+      for ($i = 0; $i < $numberOfNodes; $i++) {
         $nodeSet[] = self::NODE+$i;
       }
       $undirectedGraph->addNodeSet($nodeSet);
@@ -56,7 +56,7 @@ class GraphTest extends PHPUnit_Framework_TestCase
       $undirectedGraph = new Graph(self::UNDIRECTED_GRAPH, self::NON_WEIGHTED_GRAPH);
       $numberOfNodes = 2;
       $nodeSet = array();
-      for ($i; $i < $numberOfNodes; $i++) {
+      for ($i = 0; $i < $numberOfNodes; $i++) {
         $nodeSet[] = self::NODE+$i;
       }
       $undirectedGraph->addNodeSet($nodeSet);
