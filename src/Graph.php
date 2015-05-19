@@ -12,7 +12,7 @@ class Graph
    * @param bool $isDirected
    * @param bool $isPonderated
    * @return UndirectedGraph
-  **/
+   **/
   public function __construct($isDirected, $isWeighted)
   {
     $this->graph = array();
@@ -23,7 +23,7 @@ class Graph
 
   /**
    * @param mixed $node
-  **/
+   **/
   public function addNode($node)
   {
     $this->addNewNode($node);
@@ -31,7 +31,7 @@ class Graph
 
   /**
    * @param array $nodes
-  **/
+   **/
   public function addNodeSet(array $nodes)
   {
     foreach ($nodes as $node) {
@@ -41,7 +41,7 @@ class Graph
 
   /**
    * @param array $node
-  **/
+   **/
   private function addNewNode($node)
   {
     if (!isset($this->graph[$node])) {
@@ -53,7 +53,7 @@ class Graph
    * @param mixed $firstNode
    * @param mixed $secondNode
    * @param int $weight
-  **/
+   **/
   public function addEdge($firstNode, $secondNode, $weight = null)
   {
     if ($this->isWeighted && $weight === null) {
@@ -73,7 +73,7 @@ class Graph
    * @param mixed $firstNode
    * @param mixed $secondNode
    * @param int|null $weight
-  **/
+   **/
   private function addNewEdge($firstNode, $secondNode, $weight)
   {
     if (!$this->existsEdge($firstNode, $secondNode) && !$this->areBothNodesIdentical($firstNode, $secondNode)) {
@@ -87,7 +87,7 @@ class Graph
   /**
    * @param mixed $startNode
    * @param mixed secondNode
-  **/
+   **/
   private function existsEdge($firstNode, $secondNode)
   {
     foreach ($this->graph[$firstNode] as $edge) {
@@ -101,7 +101,7 @@ class Graph
   /**
    * @param mixed $firstNode
    * @param mixed $secondNode
-  **/
+   **/
   private function areBothNodesIdentical($firstNode, $secondNode)
   {
     return $firstNode === $secondNode;
@@ -109,7 +109,7 @@ class Graph
 
   /**
    * @return int
-  **/
+   **/
   public function getNumberOfNodes()
   {
     return count($this->graph);
@@ -117,7 +117,7 @@ class Graph
 
   /**
    * @return array
-  **/
+   **/
   public function getAllNodes()
   {
     return array_keys($this->graph);
@@ -125,7 +125,7 @@ class Graph
 
   /**
    * @return array
-  **/
+   **/
   public function getGraph()
   {
     return $this->graph;

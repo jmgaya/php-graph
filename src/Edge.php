@@ -9,8 +9,8 @@ class Edge
    * @param mixed $node
    * @param int|null $weight
    * @return Node
-  **/
-  public function __construct($node, $weight = null)
+   **/
+  public function __construct($node, $weight)
   {
     $this->node = $node;
     $this->weight = $weight;
@@ -19,7 +19,7 @@ class Edge
 
   /**
    * @return int|null
-  **/
+   **/
   public function getWeight()
   {
     return $this->weight;
@@ -27,7 +27,7 @@ class Edge
 
   /**
    * @return mixed
-  **/
+   **/
   public function getNode()
   {
     return $this->node;
@@ -35,7 +35,7 @@ class Edge
 
   /**
    * @param int|null $weight
-  **/
+   **/
   public function setWeight($weight)
   {
     $this->weight = $weight;
@@ -43,7 +43,7 @@ class Edge
 
   /**
    * @param mixed $node
-  **/
+   **/
   public function setNode($node)
   {
     $this->node = $node;
