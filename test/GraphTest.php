@@ -1,6 +1,6 @@
 <?php
 
-require_once('../src/Graph.php');
+require_once __DIR__ . '/../src/Graph.php';
 
 class GraphTest extends PHPUnit_Framework_TestCase
 {
