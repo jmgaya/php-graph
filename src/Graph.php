@@ -57,7 +57,7 @@ class Graph
   public function addEdge($firstNode, $secondNode, $weight = null)
   {
     if ($this->isWeighted && $weight === null) {
-      throw new Exception("Weighted graphs don't accept null weights");
+      throw new InvalidArgumentException('Weighted graphs dont accept null weights');
     } else {
       if (isset($this->graph[$firstNode]) && isset($this->graph[$secondNode])) {
         $this->addNewEdge($firstNode, $secondNode, $weight);
