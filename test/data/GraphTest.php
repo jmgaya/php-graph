@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../src/Graph.php';
+require_once __DIR__ . '/../../src/data/Graph.php';
 
 class GraphTest extends PHPUnit_Framework_TestCase
 {
@@ -60,9 +60,12 @@ class GraphTest extends PHPUnit_Framework_TestCase
       $undirectedGraph->addNodeSet($nodeSet);
       $undirectedGraph->addEdge($nodeSet[0], $nodeSet[1]);
 
-      $graph = $undirectedGraph->getGraph();
-      $this->assertEquals(null, current($graph[$nodeSet[1]])->getWeight());
-      $this->assertEquals(null, current($graph[$nodeSet[0]])->getWeight());
+      foreach ($nodeSet as $node) {
+        $graphEdges = $undirectedGraph->getEdges($node);
+        foreach ($graphEdges as $graphEdge) {
+          $this->assertEquals(null, $graphEdge->getWeight());
+        }
+      }
     }
 
     /**
@@ -92,11 +95,9 @@ class GraphTest extends PHPUnit_Framework_TestCase
       $undirectedGraph->addNodeSet($nodeSet);
       $undirectedGraph->addEdge($nodeSet[0], $nodeSet[1]);
 
-      $graph = $undirectedGraph->getGraph();
-      $this->assertEquals($nodeSet[0], current($graph[$nodeSet[1]])->getNode());
-      $this->assertEquals(1, count($graph[$nodeSet[1]]));
-      $this->assertEquals($nodeSet[1], current($graph[$nodeSet[0]])->getNode());
-      $this->assertEquals(1, count($graph[$nodeSet[0]]));
+      $graph = $undirectedGraph->getAllNodes();
+      $this->assertEquals($nodeSet[0], current($undirectedGraph->getEdges($nodeSet[1]))->getNode());
+      $this->assertEquals($nodeSet[1], current($undirectedGraph->getEdges($nodeSet[0]))->getNode());
     }
 
     public function testAddEdgeOnUndirectedGraphWhenNodesHaveNotBeenAddedBefore()
@@ -109,11 +110,10 @@ class GraphTest extends PHPUnit_Framework_TestCase
       }
       $undirectedGraph->addEdge($nodeSet[0], $nodeSet[1]);
 
-      $graph = $undirectedGraph->getGraph();
-      $this->assertEquals($nodeSet[0], current($graph[$nodeSet[1]])->getNode());
-      $this->assertEquals(1, count($graph[$nodeSet[1]]));
-      $this->assertEquals($nodeSet[1], current($graph[$nodeSet[0]])->getNode());
-      $this->assertEquals(1, count($graph[$nodeSet[0]]));
+      $this->assertEquals($nodeSet[0], current($undirectedGraph->getEdges($nodeSet[1]))->getNode());
+      $this->assertEquals(1, count($undirectedGraph->getEdges($nodeSet[1])));
+      $this->assertEquals($nodeSet[1], current($undirectedGraph->getEdges($nodeSet[0]))->getNode());
+      $this->assertEquals(1, count($undirectedGraph->getEdges($nodeSet[0])));
     }
 
     public function testAddEdgeOnDirectedGraphWhenNodesHaveNotBeenAddedBefore()
@@ -126,11 +126,10 @@ class GraphTest extends PHPUnit_Framework_TestCase
       }
       $directedGraph->addEdge($nodeSet[0], $nodeSet[1]);
 
-      $graph = $directedGraph->getGraph();
-      $this->assertEquals($nodeSet[1], current($graph[$nodeSet[0]])->getNode());
-      $this->assertEquals(1, count($graph[$nodeSet[0]]));
-      $this->assertEquals(array(), $graph[$nodeSet[1]]);
-      $this->assertEquals(2, count($graph));
+      $this->assertEquals($nodeSet[1], current($directedGraph->getEdges($nodeSet[0]))->getNode());
+      $this->assertEquals(1, count($directedGraph->getEdges($nodeSet[0])));
+      $this->assertEquals(array(), $directedGraph->getEdges($nodeSet[1]));
+      $this->assertEquals(2, count($directedGraph->getAllNodes()));
     }
 
     public function testAddEdgeWhenNodesAreEqualDoesNotAddAnyEdge()
@@ -140,9 +139,8 @@ class GraphTest extends PHPUnit_Framework_TestCase
       $node = self::NODE;
       $undirectedGraph->addEdge($node, $node);
 
-      $graph = $undirectedGraph->getGraph();
-      $this->assertEquals(array(), current($graph));
-      $this->assertEquals(1, count($graph));
+      $this->assertEquals(array(), $undirectedGraph->getEdges($node));
+      $this->assertEquals(1, count($undirectedGraph->getAllNodes()));
     }
 }
 

@@ -124,11 +124,28 @@ class Graph
   }
 
   /**
-   * @return array
+   * @param mixed $node
+   * @return array|null
    **/
-  public function getGraph()
+  public function getEdges($node)
   {
-    return $this->graph;
+    return isset($this->graph[$node]) ? $this->graph[$node] : null;
+  }
+
+  /**
+   * @return bool
+   **/
+  public function isDirected()
+  {
+    return $this->isDirected;
+  }
+
+  /**
+   * @return bool
+   **/
+  public function isWeighted()
+  {
+    return $this->isWeighted;
   }
 
   public function displayGraph()
