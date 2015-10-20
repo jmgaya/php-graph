@@ -90,7 +90,7 @@ class Graph
   private function existsEdge($firstNode, $secondNode)
   {
     foreach ($this->graph[$firstNode] as $edge) {
-      if ($edge === $secondNode){
+      if ($edge->getNode() === $secondNode){
         return true;
       }
     }
