@@ -18,7 +18,6 @@ class Graph
     $this->graph = array();
     $this->isDirected = $isDirected;
     $this->isWeighted = $isWeighted;
-    return $this;
   }
 
   /**
