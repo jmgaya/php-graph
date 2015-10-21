@@ -142,6 +142,16 @@ class GraphTest extends PHPUnit_Framework_TestCase
       $this->assertEquals(array(), $undirectedGraph->getEdges($node));
       $this->assertEquals(1, count($undirectedGraph->getAllNodes()));
     }
+
+    public function testCanNotAddRepeatedEdges()
+    {
+      $graph = new Graph(self::UNDIRECTED_GRAPH, self::NON_WEIGHTED_GRAPH);
+
+      $graph->addEdge('node1', 'node2');
+      $graph->addEdge('node1', 'node2');
+
+      $this->assertCount(1, $graph->getEdges('node1'));
+    }
 }
 
 ?>
